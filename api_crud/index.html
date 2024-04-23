@@ -72,6 +72,9 @@ Theme by GitBook
 
 
 <h1 id="api-crud">Api-CRUD</h1>
+<h2 id="contexte">Contexte</h2>
+<p>Le but de l'API est de répondre aux besoins d'une application de CE.
+Elle doit permettre d'intéragir avec des produits, des catalogues et des utilisateurs.</p>
 <h2 id="docker-compose">Docker compose</h2>
 <p>Deux docker-compose sont fournis pour lancer l'application en local.</p>
 <h3 id="docker-composeyml">docker-compose.yml</h3>
@@ -91,7 +94,12 @@ Theme by GitBook
 </code></pre>
 <p>Exemple de json :</p>
 <pre><code class="language-json">{
-
+  &quot;nom&quot;: &quot;string&quot;,
+  &quot;login&quot;: &quot;string&quot;,
+  &quot;prenom&quot;: &quot;string&quot;,
+  &quot;mail&quot;: &quot;string&quot;,
+  &quot;password&quot;: &quot;string&quot;,
+  &quot;roles&quot;: &quot;string&quot;
 }
 </code></pre>
 <p>Ajoute un nouvel utilisateur à la base de données.</p>
@@ -100,7 +108,13 @@ Theme by GitBook
 </code></pre>
 <p>Exemple de json :</p>
 <pre><code class="language-json">{
-
+  &quot;id&quot;: 0,
+  &quot;nom&quot;: &quot;string&quot;,
+  &quot;login&quot;: &quot;string&quot;,
+  &quot;prenom&quot;: &quot;string&quot;,
+  &quot;mail&quot;: &quot;string&quot;,
+  &quot;password&quot;: &quot;string&quot;,
+  &quot;roles&quot;: &quot;string&quot;
 }
 </code></pre>
 <p>Met à jour les informations d'un utilisateur existant</p>

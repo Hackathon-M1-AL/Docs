@@ -72,8 +72,21 @@ Theme by GitBook
 
 
 <h1 id="authentification">Authentification</h1>
-<h2 id="docker-compose">Docker compose</h2>
-<p>Deux docker-compose sont fournis pour lancer l'application en local.</p>
+<h2 id="contexte-du-projet">Contexte du projet</h2>
+<p>Ce projet a été réalisé dans le cadre d'un <code>hackathon</code> durant notre quatrième année de formation supérieure, sur une période de deux jours. </p>
+<p>Notre objectif était de mettre en place un système d'authentification (IAM : Identity and Access Management) utilisé par différents micro-services.</p>
+<p>L'authentification permettra :
+- L'ajout d'utilisateur
+- Le login
+- La validation de token et des rôles
+- La modification de mot de passe
+- La déconnexion</p>
+<p>Participants au projet : 
+- Dimitri Chine
+- Aurélien Penot--Perbet
+- Robin Peignet</p>
+<h2 id="installation-mise-en-place">Installation / Mise en place</h2>
+<p>Deux docker-compose sont fournis par l'équipe chargé de la partie DevOps pour lancer l'application en local.</p>
 <h3 id="docker-composeyml">docker-compose.yml</h3>
 <p>Le premier docker-compose permet de lancer l'application en local base de données PostgreSQL et l'application Spring Boot.</p>
 <p>Pour lancer l'application, il suffit de lancer la commande suivante :</p>
@@ -84,96 +97,190 @@ Theme by GitBook
 <p>Pour lancer la base de données, il suffit de lancer la commande suivante :</p>
 <pre><code class="language-bash">docker-compose -f docker-compose-dev.yml up
 </code></pre>
-<h2 id="user-registration-user-login-and-authorization-process">User Registration, User Login and Authorization process.</h2>
-<p>The diagram shows flow of how we implement User Registration, User Login and Authorization process.</p>
-<p><img alt="spring-boot-spring-security-postgresql-jwt-authentication-flow" src="https://raw.githubusercontent.com/Hackathon-M1-AL/Authentification/main/spring-boot-spring-security-postgresql-jwt-authentication-flow.png" /></p>
-<h2 id="spring-boot-server-architecture-with-spring-security">Spring Boot Server Architecture with Spring Security</h2>
-<p>You can have an overview of our Spring Boot Server with the diagram below:</p>
-<p><img alt="spring-boot-spring-security-postgresql-jwt-authentication-architecture" src="https://raw.githubusercontent.com/Hackathon-M1-AL/Authentification/main/spring-boot-spring-security-postgresql-jwt-authentication-architecture.png" /></p>
-<h2 id="configure-spring-datasource-jpa-app-properties">Configure Spring Datasource, JPA, App properties</h2>
-<p>Open <code>src/main/resources/application.properties</code></p>
-<pre><code>spring.datasource.url= jdbc:postgresql://localhost:5432/testdb
-spring.datasource.username= postgres
-spring.datasource.password= 123
-
-spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation= true
-spring.jpa.properties.hibernate.dialect= org.hibernate.dialect.PostgreSQLDialect
-
-# Hibernate ddl auto (create, create-drop, validate, update)
-spring.jpa.hibernate.ddl-auto= update
-
-# App Properties
-esgi.app.jwtSecret= ======================esgi=Spring===========================
-esgi.app.jwtExpirationMs= 86400000
+<h2 id="test-des-differents-endpoints">Test des différents endpoints</h2>
+<p>Après avoir lancé le projet en local, nous pouvons ajouter des utilisateurs via différents endpoint.</p>
+<p>Dans le cadre de la démonstration, on utilisera insomnia ou postman pour tester les routes.</p>
+<h3 id="1-ajout-dutilisateur-signup">1) Ajout d'utilisateur (signup)</h3>
+<p>Pour insérer un nouvel utilisateur dans la base postgres on utilise la route suivante : </p>
+<pre><code class="language-bash"># Méthode : POST
+http://localhost:8080/api/auth/signup
 </code></pre>
-<h2 id="run-spring-boot-application">Run Spring Boot application</h2>
-<pre><code>mvn spring-boot:run
+<p>Les informations de l'utilisateur créé (username, mail, role...) sont renseigné dans le corps de la requête en JSON : </p>
+<pre><code class="language-json">{
+  &quot;username&quot;: &quot;new_user&quot;,
+  &quot;email&quot;: &quot;new_user@example.com&quot;,
+  &quot;password&quot;: &quot;new_password&quot;,
+  &quot;role&quot;: [&quot;ROLE_USER&quot;] // ROLE_MODERATEUR, ROLE_ADMIN
+}
 </code></pre>
-<h2 id="run-following-sql-insert-statements">Run following SQL insert statements</h2>
-<pre><code>INSERT INTO roles(name) VALUES('ROLE_USER');
-INSERT INTO roles(name) VALUES('ROLE_MODERATOR');
-INSERT INTO roles(name) VALUES('ROLE_ADMIN');
+<p><em>Résultats attendus</em> :</p>
+<pre><code class="language-json">{
+    &quot;message&quot;: &quot;User registered successfully!&quot;
+}
 </code></pre>
-<p>For more detail, please visit:</p>
-<blockquote>
-<p><a href="https://esgi.com/spring-boot-security-postgresql-jwt-authentication/">Spring Boot, Spring Security, PostgreSQL: JWT Authentication &amp; Authorization example</a></p>
-<p><a href="https://esgi.com/spring-boot-jwt-authentication/">For MySQL</a></p>
-<p><a href="https://esgi.com/spring-boot-jwt-auth-mongodb/">For MongoDB</a></p>
-</blockquote>
-<h2 id="refresh-token">Refresh Token</h2>
-<p><img alt="spring-boot-refresh-token-jwt-example-flow" src="https://raw.githubusercontent.com/Hackathon-M1-AL/Authentification/main/spring-boot-refresh-token-jwt-example-flow.png" /></p>
-<p>For instruction: <a href="https://esgi.com/spring-boot-refresh-token-jwt/">Spring Boot Refresh Token with JWT example</a></p>
-<h2 id="more-practice">More Practice:</h2>
-<blockquote>
-<p><a href="https://esgi.com/spring-boot-file-upload/">Spring Boot File upload example with Multipart File</a></p>
-<p><a href="https://esgi.com/spring-boot-restcontrolleradvice/">Exception handling: @RestControllerAdvice example in Spring Boot</a></p>
-<p><a href="https://esgi.com/spring-boot-unit-test-jpa-repo-datajpatest/">Spring Boot Repository Unit Test with @DataJpaTest</a></p>
-<p><a href="https://www.esgi.com/spring-boot-webmvctest/">Spring Boot Rest Controller Unit Test with @WebMvcTest</a></p>
-<p><a href="https://www.esgi.com/spring-boot-pagination-sorting-example/">Spring Boot Pagination &amp; Sorting example</a></p>
-<p>Validation: <a href="https://www.esgi.com/spring-boot-validate-request-body/">Spring Boot Validate Request Body</a></p>
-<p>Documentation: <a href="https://www.esgi.com/spring-boot-swagger-3/">Spring Boot and Swagger 3 example</a></p>
-<p>Caching: <a href="https://www.esgi.com/spring-boot-redis-cache-example/">Spring Boot Redis Cache example</a></p>
-</blockquote>
-<p>Associations:</p>
-<blockquote>
-<p><a href="https://www.esgi.com/jpa-one-to-many/">Spring Boot One To Many example with Spring JPA, Hibernate</a></p>
-<p><a href="https://www.esgi.com/jpa-many-to-many/">Spring Boot Many To Many example with Spring JPA, Hibernate</a></p>
-<p><a href="https://www.esgi.com/jpa-one-to-one/">JPA One To One example with Spring Boot</a></p>
-</blockquote>
-<h2 id="fullstack-authentication">Fullstack Authentication</h2>
-<blockquote>
-<p><a href="https://esgi.com/spring-boot-vue-js-authentication-jwt-spring-security/">Spring Boot + Vue.js JWT Authentication</a></p>
-<p><a href="https://esgi.com/angular-spring-boot-jwt-auth/">Spring Boot + Angular 8 JWT Authentication</a></p>
-<p><a href="https://esgi.com/angular-10-spring-boot-jwt-auth/">Spring Boot + Angular 10 JWT Authentication</a></p>
-<p><a href="https://esgi.com/angular-11-spring-boot-jwt-auth/">Spring Boot + Angular 11 JWT Authentication</a></p>
-<p><a href="https://www.esgi.com/angular-12-spring-boot-jwt-auth/">Spring Boot + Angular 12 JWT Authentication</a></p>
-<p><a href="https://www.esgi.com/angular-13-spring-boot-jwt-auth/">Spring Boot + Angular 13 JWT Authentication</a></p>
-<p><a href="https://www.esgi.com/angular-14-spring-boot-jwt-auth/">Spring Boot + Angular 14 JWT Authentication</a></p>
-<p><a href="https://www.esgi.com/angular-15-spring-boot-jwt-auth/">Spring Boot + Angular 15 JWT Authentication</a></p>
-<p><a href="https://www.esgi.com/angular-16-spring-boot-jwt-auth/">Spring Boot + Angular 16 JWT Authentication</a></p>
-<p><a href="https://www.esgi.com/angular-17-spring-boot-jwt-auth/">Spring Boot + Angular 17 JWT Authentication</a></p>
-<p><a href="https://esgi.com/spring-boot-react-jwt-auth/">Spring Boot + React JWT Authentication</a></p>
-</blockquote>
-<h2 id="fullstack-crud-app">Fullstack CRUD App</h2>
-<blockquote>
-<p><a href="https://www.esgi.com/spring-boot-vue-js-postgresql/">Vue.js + Spring Boot + PostgreSQL example</a></p>
-<p><a href="https://esgi.com/angular-spring-boot-postgresql/">Angular 8 + Spring Boot + PostgreSQL example</a></p>
-<p><a href="https://esgi.com/angular-10-spring-boot-postgresql/">Angular 10 + Spring Boot + PostgreSQL example</a></p>
-<p><a href="https://esgi.com/angular-11-spring-boot-postgresql/">Angular 11 + Spring Boot + PostgreSQL example</a></p>
-<p><a href="https://www.esgi.com/angular-12-spring-boot-postgresql/">Angular 12 + Spring Boot + PostgreSQL example</a></p>
-<p><a href="https://www.esgi.com/spring-boot-angular-13-postgresql/">Angular 13 + Spring Boot + PostgreSQL example</a></p>
-<p><a href="https://www.esgi.com/spring-boot-angular-14-postgresql/">Angular 14 + Spring Boot + PostgreSQL example</a></p>
-<p><a href="https://www.esgi.com/spring-boot-angular-15-postgresql/">Angular 15 + Spring Boot + PostgreSQL example</a></p>
-<p><a href="https://www.esgi.com/spring-boot-angular-16-postgresql/">Angular 16 + Spring Boot + PostgreSQL example</a></p>
-<p><a href="https://www.esgi.com/spring-boot-angular-17-postgresql/">Angular 17 + Spring Boot + PostgreSQL example</a></p>
-<p><a href="https://esgi.com/spring-boot-react-postgresql/">React + Spring Boot + PostgreSQL example</a></p>
-</blockquote>
-<p>Run both Back-end &amp; Front-end in one place:</p>
-<blockquote>
-<p><a href="https://esgi.com/integrate-angular-spring-boot/">Integrate Angular with Spring Boot Rest API</a></p>
-<p><a href="https://esgi.com/integrate-reactjs-spring-boot/">Integrate React.js with Spring Boot Rest API</a></p>
-<p><a href="https://esgi.com/integrate-vue-spring-boot/">Integrate Vue.js with Spring Boot Rest API</a></p>
-</blockquote>
+<pre><code class="language-json">{
+    &quot;message&quot;: &quot;Error: Username is already taken!&quot;
+}
+</code></pre>
+<pre><code class="language-json">{
+    &quot;message&quot;: &quot;Error: Email is already in use!&quot;
+}
+</code></pre>
+<h3 id="2-connexion-signin">2) Connexion (signin)</h3>
+<p>Après avoir créé l'utilisateur, on peut donc utiliser ses nouveaux crédentials pour s'authentifier : </p>
+<pre><code class="language-bash"># Méthode : POST
+http://localhost:8080/api/auth/signin
+</code></pre>
+<pre><code class="language-json">{
+  &quot;username&quot;: &quot;new_user&quot;,
+  &quot;password&quot;: &quot;new_password&quot;
+}
+</code></pre>
+<p><em>Résultats attendus</em> :</p>
+<pre><code class="language-json">{
+    &quot;refreshToken&quot;: &quot;refresh_token&quot;,
+    &quot;id&quot;: 2,
+    &quot;username&quot;: &quot;new_user&quot;,
+    &quot;email&quot;: &quot;new_user@example.com&quot;,
+    &quot;roles&quot;: [
+        &quot;ROLE_USER&quot;
+    ],
+    &quot;accessToken&quot;: &quot;access_token&quot;,
+    &quot;tokenType&quot;: &quot;Bearer&quot;
+}
+</code></pre>
+<p><em>Résultats attendus en cas d'erreur</em> :</p>
+<pre><code class="language-json">{
+    &quot;path&quot;: &quot;/api/auth/signin&quot;,
+    &quot;error&quot;: &quot;Unauthorized&quot;,
+    &quot;message&quot;: &quot;Bad credentials&quot;,
+    &quot;status&quot;: 401
+}
+</code></pre>
+<h3 id="3-verification-du-token">3) Vérification du token</h3>
+<p>La route de vérification du token permet de tester la validité du token jwt.</p>
+<pre><code class="language-bash"># Méthode : GET
+http://localhost:8080/api/auth/verifytoken
+</code></pre>
+<p>On doit donc également ajouter le <code>token</code> que l'on souhaite vérifier dans les en-têtes (headers) de la requête : </p>
+<pre><code class="language-bash">Authorization | Bearer {token}
+</code></pre>
+<p><em>Réponse attendu</em> :</p>
+<pre><code class="language-json">{
+    &quot;message&quot;: &quot;Token is valid&quot;
+}
+</code></pre>
+<h3 id="4-refresh-token">4) Refresh token</h3>
+<p>Route pour récupérer un token dans le cas d'une expiration : </p>
+<pre><code class="language-bash"># Méthode : POST
+http://localhost:8080/api/auth/verifytoken
+</code></pre>
+<pre><code class="language-json">{
+    &quot;refreshToken&quot;: &quot;refresh_token&quot;
+}
+</code></pre>
+<p><em>Résultat attendu</em> :</p>
+<pre><code class="language-json">{
+    &quot;accessToken&quot;: &quot;access_token&quot;,
+    &quot;refreshToken&quot;: &quot;refresh_token&quot;,
+    &quot;tokenType&quot;: &quot;Bearer&quot;
+}
+</code></pre>
+<h3 id="4-validation-des-roles">4) Validation des rôles</h3>
+<p>Route pour valider qu'un token appartient à un rôle spécifique : </p>
+<pre><code class="language-bash"># Méthode : GET
+http://localhost:8080/api/auth/verify/all
+http://localhost:8080/api/auth/verify/mod
+http://localhost:8080/api/auth/verify/admin
+</code></pre>
+<p><em>Résultat attendu</em> :</p>
+<pre><code class="language-bash">Public content
+Moderator Board.
+Admin Board.
+</code></pre>
+<p><em>Résultat attendus en cas d'erreur</em> :</p>
+<pre><code class="language-json">{
+    &quot;path&quot;: &quot;/refresh&quot;,
+    &quot;message&quot;: &quot;JWT token is expired&quot;,
+    &quot;status&quot;: 401
+}
+</code></pre>
+<pre><code class="language-json">{
+    &quot;path&quot;: &quot;/error&quot;,
+    &quot;message&quot;: &quot;Erreur technique lié au token&quot;,
+    &quot;status&quot;: 400
+}
+</code></pre>
+<p><em>Remarque : Chaque endpoints est accessible et documenté sur SWAGGER par l'URL :</em></p>
+<pre><code class="language-bash">localhost:8080/swagger-ui/index.html
+</code></pre>
+<h2 id="partie-technique">Partie technique</h2>
+<p>Le système d'authentification est basé sur ce repository github (Oauth2) : https://github.com/bezkoder/spring-boot-security-postgresql</p>
+<p>Le projet a été développé en java avec le framework <code>spring</code> pour fonctionner avec le SGBDR (système de gestion de bases de données relationnelles) <code>Postgres</code>, et organisé en respectant une méthode de clean architecture.</p>
+<p><em>Image tirée du README d'origine.</em>
+<img alt="spring-boot-spring-security-postgresql-jwt-authentication-flow" src="https://raw.githubusercontent.com/Hackathon-M1-AL/Authentification/main/spring-boot-spring-security-postgresql-jwt-authentication-flow.png" /></p>
+<h3 id="1-les-endpoints">1) Les endpoints</h3>
+<p>Le projet d'origine embarquait l'ajout de compte (utilisateur, modérateur et administrateur) et l'authentification.</p>
+<p>Nous avons donc ajouté des routes supplémentaires pour répondre au besoins spécifiques exprimés (vérification du token, rafraîchissement...).</p>
+<p>Chaque endpoints attend des informations spécifiques en entrée / sortie organisés en DTOs.</p>
+<p><em>Exemple des DTOs d'entrée / sortie du refresh token :</em></p>
+<pre><code class="language-java">public class TokenRefreshRequest {
+    @NotBlank
+    private String refreshToken;
+
+    // getter / setter
+}
+
+public class TokenRefreshResponse {
+    private String accessToken;
+    private String refreshToken;
+    private String tokenType = &quot;Bearer&quot;;
+
+    // getter / setter
+}
+</code></pre>
+<h3 id="2-les-mappers">2) Les mappers</h3>
+<p>Pour convertir ces DTO en objets métier (et inversement) nous avons utilisé la librairie <code>mapstruct</code> : </p>
+<pre><code class="language-xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.mapstruct&lt;/groupId&gt;
+    &lt;artifactId&gt;mapstruct&lt;/artifactId&gt;
+    &lt;version&gt;1.4.2.Final&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<p>Ainsi, nous avons créé des mappers automatiquement pris en charge par Spring.</p>
+<p><em>Exemple d'un mapper utilisé pour renvoyer des exceptions liées au token JWT :</em></p>
+<pre><code class="language-java">@Mapper(componentModel = &quot;spring&quot;)
+public interface JwtErrorMapper {
+    public JwtErrorMapper INSTANCE = Mappers.getMapper(JwtErrorMapper.class);
+
+    @Mapping(target = &quot;status&quot;, source = &quot;httpStatus&quot;)
+    JwtErrorDTO toDto(SecurityException e);
+}
+</code></pre>
+<p>Dans ce cas <code>JwtErrorMapper</code> à pour entrée un SecurityException et pour destination une exception <code>JwtErrorDTO</code>.</p>
+<p>Il va mapper le paramètre <code>httpStatus</code> de l'exception vers l'attribut <code>status</code> du DTO.</p>
+<h3 id="3-gestion-des-erreurs">3) Gestion des erreurs</h3>
+<p>Pour gérer les différents cas d'erreurs, nous avons créer nos propres exceptions.</p>
+<p>L'objectif est donc de renvoyer une erreur spécifique (au client qui a exécuter la requête) avec plusieurs informations : 
+- Un code HTTP d'erreur
+- Un message de description
+- Une route de redirection</p>
+<pre><code class="language-java">public class SecurityException extends JwtException {
+    protected String message;
+    protected String path;
+    protected final int httpStatus;
+
+    // getter / setter
+}
+
+// Classe qui hérite de SecurityException
+public class TokenRefreshException extends SecurityException {
+    public TokenRefreshException() {
+        super(&quot;/error&quot;, &quot;Refresh token is not in database!&quot;, HttpStatus.BAD_REQUEST);
+    }
+}
+</code></pre>
+<p>Chaque exception catchée (et liée au token) est peut alors être gérer par les classes qui héritent de SecurityException (et par extention de JwtException).</p>
 
 
 </section>
