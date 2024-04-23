@@ -1,2 +1,1 @@
-# Docs
-Read the freakin' doc
+# 🌍[Documentation](https://hackathon-m1-al.github.io/Docs/)
