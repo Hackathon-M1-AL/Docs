@@ -52,7 +52,5 @@ Github > Settings > Developer settings > Personal access tokens > Tokens (classi
 3. Se connecter au registy des images Docker
 
 ```bash
-docker login docker.pkg.github.com -u <username> -p <token>
+docker login ghcr.io -u <username> -p <token>
 ```
-
-![error_1](./images/error_1.png)
