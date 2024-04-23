@@ -35,7 +35,7 @@ docker-compose up
 
 ### Problème de connexion au registy des images Docker 🐳
 
-![error](../images/error.png)
+![error](./images/error.png)
 
 Pour résoudre ce problème, il faut se connecter au registy des images Docker. Pour cela, il faut suivre les étapes suivantes:
 
@@ -55,4 +55,4 @@ Github > Settings > Developer settings > Personal access tokens > Tokens (classi
 docker login docker.pkg.github.com -u <username> -p <token>
 ```
 
-![error_1](../images/error_1.png)
+![error_1](./images/error_1.png)

@@ -73,8 +73,8 @@ Theme by GitBook
 
 <h1 id="welcome-to-docathon">Welcome to Docathon 🎉</h1>
 <p>Lien github de l'organisation: <a href="" title="https://github.com/Hackathon-M1-AL">Hackathon</a></p>
-<h2 id="installation-du-projet">Installation du projet</h2>
-<h3 id="prerequis">Prérequis</h3>
+<h2 id="installation-du-projet">Installation du projet 🚀</h2>
+<h3 id="prerequis">Prérequis 📋</h3>
 <ul>
 <li><a href="https://nodejs.org/en/">Node.js</a></li>
 <li><a href="https://www.npmjs.com/">Npm</a></li>
@@ -82,7 +82,7 @@ Theme by GitBook
 <li><a href="https://www.docker.com/">Docker</a></li>
 <li><a href="https://docs.docker.com/compose/">Docker-compose</a></li>
 </ul>
-<h3 id="installation">Installation</h3>
+<h3 id="installation">Installation 🖥️</h3>
 <p>Installer du frontend:</p>
 <pre><code class="language-bash">git clone https://github.com/Hackathon-M1-AL/Frontend
 cd Frontend
@@ -94,6 +94,30 @@ npm run preview
 cd DevOps
 docker-compose up
 </code></pre>
+<h2 id="troubleshooting">Troubleshooting ⚙️</h2>
+<h3 id="probleme-de-connexion-au-registy-des-images-docker">Problème de connexion au registy des images Docker 🐳</h3>
+<p><img alt="error" src="../images/error.png" /></p>
+<p>Pour résoudre ce problème, il faut se connecter au registy des images Docker. Pour cela, il faut suivre les étapes suivantes:</p>
+<ol>
+<li>Création d'un personal access token sur Github</li>
+</ol>
+<p>Github &gt; Settings &gt; Developer settings &gt; Personal access tokens &gt; Tokens (classic) &gt; Generate new token (classic)</p>
+<ul>
+<li>Sélectionnez l’étendue <code>read:packages</code> pour télécharger des images conteneur et lire leurs métadonnées.</li>
+<li>Sélectionnez l’étendue <code>write:packages</code> pour télécharger et charger des images conteneur et lire et écrire leurs métadonnées.</li>
+<li>
+<p>Sélectionnez l’étendue <code>delete:packages</code> pour supprimer des images conteneur.</p>
+</li>
+<li>
+<p>Copier le token généré</p>
+</li>
+<li>
+<p>Se connecter au registy des images Docker</p>
+</li>
+</ul>
+<pre><code class="language-bash">docker login docker.pkg.github.com -u &lt;username&gt; -p &lt;token&gt;
+</code></pre>
+<p><img alt="error_1" src="../images/error_1.png" /></p>
 
 
 </section>
