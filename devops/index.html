@@ -67,7 +67,115 @@ Theme by GitBook
 
 <h1 id="devops">DevOps</h1>
 <pre><code class="language-markdown">
+## Docker compose
+
+Deux docker-compose sont fournis pour lancer l'application en local.
+
+### docker-compose.yml
+
+Le premier docker-compose permet de lancer l'application en local base de données PostgreSQL et l'application Spring Boot.
+
+Pour lancer l'application, il suffit de lancer la commande suivante :
+
+```bash
+docker-compose -f docker-compose.yml up
 </code></pre>
+<h3 id="docker-compose-devyml">docker-compose-dev.yml</h3>
+<p>Le deuxième docker-compose permet de lancer juste la base de données PostgreSQL en local.</p>
+<p>Pour lancer la base de données, il suffit de lancer la commande suivante :</p>
+<pre><code class="language-bash">docker-compose -f docker-compose-dev.yml up
+</code></pre>
+<h2 id="user-registration-user-login-and-authorization-process">User Registration, User Login and Authorization process.</h2>
+<p>The diagram shows flow of how we implement User Registration, User Login and Authorization process.</p>
+<p><img alt="spring-boot-spring-security-postgresql-jwt-authentication-flow" src="https://raw.githubusercontent.com/Hackathon-M1-AL/Authentification/main/spring-boot-spring-security-postgresql-jwt-authentication-flow.png" /></p>
+<h2 id="spring-boot-server-architecture-with-spring-security">Spring Boot Server Architecture with Spring Security</h2>
+<p>You can have an overview of our Spring Boot Server with the diagram below:</p>
+<p><img alt="spring-boot-spring-security-postgresql-jwt-authentication-architecture" src="https://raw.githubusercontent.com/Hackathon-M1-AL/Authentification/main/spring-boot-spring-security-postgresql-jwt-authentication-architecture.png" /></p>
+<h2 id="configure-spring-datasource-jpa-app-properties">Configure Spring Datasource, JPA, App properties</h2>
+<p>Open <code>src/main/resources/application.properties</code></p>
+<pre><code>spring.datasource.url= jdbc:postgresql://localhost:5432/testdb
+spring.datasource.username= postgres
+spring.datasource.password= 123
+
+spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation= true
+spring.jpa.properties.hibernate.dialect= org.hibernate.dialect.PostgreSQLDialect
+
+# Hibernate ddl auto (create, create-drop, validate, update)
+spring.jpa.hibernate.ddl-auto= update
+
+# App Properties
+esgi.app.jwtSecret= ======================esgi=Spring===========================
+esgi.app.jwtExpirationMs= 86400000
+</code></pre>
+<h2 id="run-spring-boot-application">Run Spring Boot application</h2>
+<pre><code>mvn spring-boot:run
+</code></pre>
+<h2 id="run-following-sql-insert-statements">Run following SQL insert statements</h2>
+<pre><code>INSERT INTO roles(name) VALUES('ROLE_USER');
+INSERT INTO roles(name) VALUES('ROLE_MODERATOR');
+INSERT INTO roles(name) VALUES('ROLE_ADMIN');
+</code></pre>
+<p>For more detail, please visit:</p>
+<blockquote>
+<p><a href="https://esgi.com/spring-boot-security-postgresql-jwt-authentication/">Spring Boot, Spring Security, PostgreSQL: JWT Authentication &amp; Authorization example</a></p>
+<p><a href="https://esgi.com/spring-boot-jwt-authentication/">For MySQL</a></p>
+<p><a href="https://esgi.com/spring-boot-jwt-auth-mongodb/">For MongoDB</a></p>
+</blockquote>
+<h2 id="refresh-token">Refresh Token</h2>
+<p><img alt="spring-boot-refresh-token-jwt-example-flow" src="https://raw.githubusercontent.com/Hackathon-M1-AL/Authentification/main/spring-boot-refresh-token-jwt-example-flow.png" /></p>
+<p>For instruction: <a href="https://esgi.com/spring-boot-refresh-token-jwt/">Spring Boot Refresh Token with JWT example</a></p>
+<h2 id="more-practice">More Practice:</h2>
+<blockquote>
+<p><a href="https://esgi.com/spring-boot-file-upload/">Spring Boot File upload example with Multipart File</a></p>
+<p><a href="https://esgi.com/spring-boot-restcontrolleradvice/">Exception handling: @RestControllerAdvice example in Spring Boot</a></p>
+<p><a href="https://esgi.com/spring-boot-unit-test-jpa-repo-datajpatest/">Spring Boot Repository Unit Test with @DataJpaTest</a></p>
+<p><a href="https://www.esgi.com/spring-boot-webmvctest/">Spring Boot Rest Controller Unit Test with @WebMvcTest</a></p>
+<p><a href="https://www.esgi.com/spring-boot-pagination-sorting-example/">Spring Boot Pagination &amp; Sorting example</a></p>
+<p>Validation: <a href="https://www.esgi.com/spring-boot-validate-request-body/">Spring Boot Validate Request Body</a></p>
+<p>Documentation: <a href="https://www.esgi.com/spring-boot-swagger-3/">Spring Boot and Swagger 3 example</a></p>
+<p>Caching: <a href="https://www.esgi.com/spring-boot-redis-cache-example/">Spring Boot Redis Cache example</a></p>
+</blockquote>
+<p>Associations:</p>
+<blockquote>
+<p><a href="https://www.esgi.com/jpa-one-to-many/">Spring Boot One To Many example with Spring JPA, Hibernate</a></p>
+<p><a href="https://www.esgi.com/jpa-many-to-many/">Spring Boot Many To Many example with Spring JPA, Hibernate</a></p>
+<p><a href="https://www.esgi.com/jpa-one-to-one/">JPA One To One example with Spring Boot</a></p>
+</blockquote>
+<h2 id="fullstack-authentication">Fullstack Authentication</h2>
+<blockquote>
+<p><a href="https://esgi.com/spring-boot-vue-js-authentication-jwt-spring-security/">Spring Boot + Vue.js JWT Authentication</a></p>
+<p><a href="https://esgi.com/angular-spring-boot-jwt-auth/">Spring Boot + Angular 8 JWT Authentication</a></p>
+<p><a href="https://esgi.com/angular-10-spring-boot-jwt-auth/">Spring Boot + Angular 10 JWT Authentication</a></p>
+<p><a href="https://esgi.com/angular-11-spring-boot-jwt-auth/">Spring Boot + Angular 11 JWT Authentication</a></p>
+<p><a href="https://www.esgi.com/angular-12-spring-boot-jwt-auth/">Spring Boot + Angular 12 JWT Authentication</a></p>
+<p><a href="https://www.esgi.com/angular-13-spring-boot-jwt-auth/">Spring Boot + Angular 13 JWT Authentication</a></p>
+<p><a href="https://www.esgi.com/angular-14-spring-boot-jwt-auth/">Spring Boot + Angular 14 JWT Authentication</a></p>
+<p><a href="https://www.esgi.com/angular-15-spring-boot-jwt-auth/">Spring Boot + Angular 15 JWT Authentication</a></p>
+<p><a href="https://www.esgi.com/angular-16-spring-boot-jwt-auth/">Spring Boot + Angular 16 JWT Authentication</a></p>
+<p><a href="https://www.esgi.com/angular-17-spring-boot-jwt-auth/">Spring Boot + Angular 17 JWT Authentication</a></p>
+<p><a href="https://esgi.com/spring-boot-react-jwt-auth/">Spring Boot + React JWT Authentication</a></p>
+</blockquote>
+<h2 id="fullstack-crud-app">Fullstack CRUD App</h2>
+<blockquote>
+<p><a href="https://www.esgi.com/spring-boot-vue-js-postgresql/">Vue.js + Spring Boot + PostgreSQL example</a></p>
+<p><a href="https://esgi.com/angular-spring-boot-postgresql/">Angular 8 + Spring Boot + PostgreSQL example</a></p>
+<p><a href="https://esgi.com/angular-10-spring-boot-postgresql/">Angular 10 + Spring Boot + PostgreSQL example</a></p>
+<p><a href="https://esgi.com/angular-11-spring-boot-postgresql/">Angular 11 + Spring Boot + PostgreSQL example</a></p>
+<p><a href="https://www.esgi.com/angular-12-spring-boot-postgresql/">Angular 12 + Spring Boot + PostgreSQL example</a></p>
+<p><a href="https://www.esgi.com/spring-boot-angular-13-postgresql/">Angular 13 + Spring Boot + PostgreSQL example</a></p>
+<p><a href="https://www.esgi.com/spring-boot-angular-14-postgresql/">Angular 14 + Spring Boot + PostgreSQL example</a></p>
+<p><a href="https://www.esgi.com/spring-boot-angular-15-postgresql/">Angular 15 + Spring Boot + PostgreSQL example</a></p>
+<p><a href="https://www.esgi.com/spring-boot-angular-16-postgresql/">Angular 16 + Spring Boot + PostgreSQL example</a></p>
+<p><a href="https://www.esgi.com/spring-boot-angular-17-postgresql/">Angular 17 + Spring Boot + PostgreSQL example</a></p>
+<p><a href="https://esgi.com/spring-boot-react-postgresql/">React + Spring Boot + PostgreSQL example</a></p>
+</blockquote>
+<p>Run both Back-end &amp; Front-end in one place:</p>
+<blockquote>
+<p><a href="https://esgi.com/integrate-angular-spring-boot/">Integrate Angular with Spring Boot Rest API</a></p>
+<p><a href="https://esgi.com/integrate-reactjs-spring-boot/">Integrate React.js with Spring Boot Rest API</a></p>
+<p><a href="https://esgi.com/integrate-vue-spring-boot/">Integrate Vue.js with Spring Boot Rest API</a></p>
+</blockquote>
+<p>```</p>
 
 
 </section>
