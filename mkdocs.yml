@@ -1,0 +1,5 @@
+site_name: Docathon
+nav:
+    - 'DevOps': 'devops.md'
+theme:
+    name: gitbook
