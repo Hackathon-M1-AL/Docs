@@ -27,10 +27,14 @@
 <a href=".." target="_blank" class="custom-link">Docathon</a>
 </li>
 <li class="divider"></li>
-<li class="chapter active" data-path="devops/">
-<a href="./">DevOps</a>
+<li class="chapter" data-path="frontend/">
+<a href="../frontend/">Frontend</a>
+<li class="chapter" data-path="api_crud/">
+<a href="../api_crud/">API CRUD</a>
 <li class="chapter" data-path="authentification/">
 <a href="../authentification/">Authentification</a>
+<li class="chapter active" data-path="devops/">
+<a href="./">DevOps</a>
 <li class="divider"></li>
 
 
@@ -68,6 +72,41 @@ Theme by GitBook
 
 
 <h1 id="devops">DevOps</h1>
+<h2 id="cicd">CI/CD</h2>
+<p>Chaque repository contient un fichier <code>Dockerfile</code> qui permet de construire une image Docker de l'application.</p>
+<p>Sur chaque repository, lors d'un push sur la branche <code>main</code>, une github action est déclenchée pour vérifier que l'applications build correctement et que les tests passent.</p>
+<p>Sur chaque repository, lors d'une release, une github action est déclenchée pour construire l'image Docker et la pousser sur le registry GitHub. <a href="#creer-une-release">Créer une release</a></p>
+<h2 id="creer-une-release">Créer une release</h2>
+<p>Sur la page du repository, cliquer sur <code>Releases</code> puis sur <code>Draft a new release</code>.</p>
+<p>Ensuite <code>Choose a tag</code> et remplir le champ.</p>
+<p>Cliquer sur <code>Publish release</code>.</p>
+<h2 id="docker-swarm">Docker swarm</h2>
+<h3 id="initialisation">Initialisation</h3>
+<p>Initialiser le swarm sur le manager:</p>
+<pre><code class="language-bash">docker swarm init
+</code></pre>
+<p>Récupérer la commande pour ajouter des workers:</p>
+<pre><code class="language-bash">docker swarm join-token worker
+</code></pre>
+<h3 id="deploiement">Déploiement</h3>
+<p>Déployer le stack:</p>
+<pre><code class="language-bash">docker stack deploy -c docker-swarm.yml hackathon
+</code></pre>
+<p>Liste des services:</p>
+<ul>
+<li><code>nginx</code>: Reverse proxy / gateway</li>
+<li><code>auth</code>: Service d'authentification</li>
+<li><code>PostgreSQL</code>: Base de données pour le service d'authentification</li>
+<li><code>api</code>: API REST</li>
+<li><code>Mysql</code>: Base de données pour l'API REST</li>
+</ul>
+<h3 id="suppression">Suppression</h3>
+<p>Supprimer le stack:</p>
+<pre><code class="language-bash">docker stack rm hackathon
+</code></pre>
+<h2 id="nginx">Nginx</h2>
+<p>Le Nginx sert de API Gateway à notre application.
+On l'utilise aussi pour authentifier les requêtes avec le service Auth.</p>
 
 
 </section>

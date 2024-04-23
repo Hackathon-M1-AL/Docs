@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>Frontend - Docathon</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="generator" content="mkdocs-1.6.0, mkdocs-gitbook-1.0.7">
+
+<link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+<meta name="HandheldFriendly" content="true"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta rel="next" href="" />
+<link href="../css/style.min.css" rel="stylesheet"> 
+</head>
+
+<body>
+<div class="book">
+<div class="book-summary">
+
+<nav role="navigation">
+<ul class="summary">
+<li>
+<a href=".." target="_blank" class="custom-link">Docathon</a>
+</li>
+<li class="divider"></li>
+<li class="chapter active" data-path="frontend/">
+<a href="./">Frontend</a>
+<li class="chapter" data-path="api_crud/">
+<a href="../api_crud/">API CRUD</a>
+<li class="chapter" data-path="authentification/">
+<a href="../authentification/">Authentification</a>
+<li class="chapter" data-path="devops/">
+<a href="../devops/">DevOps</a>
+<li class="divider"></li>
+
+
+
+<li><a href="http://www.mkdocs.org">
+Published with MkDocs
+</a></li>
+
+<li><a href="https://github.com/GitbookIO/theme-default">
+Theme by GitBook
+</a></li>
+</ul>
+
+</nav>
+
+</div> <!-- end of book-summary -->
+
+<div class="book-body">
+<div class="body-inner">
+<div class="book-header" role="navigation">
+
+<!-- Title -->
+<h1>
+<i class="fa fa-circle-o-notch fa-spin"></i>
+<a href="." ></a>
+</h1>
+
+</div> <!-- end of book-header -->
+
+<div class="page-wrapper" tabindex="-1" role="main">
+<div class="page-inner">
+
+<section class="normal markdown-section">
+
+
+
+<h1 id="vue-3-typescript-vite">Vue 3 + TypeScript + Vite</h1>
+<p>Cette application est construite avec Vue3 et utilise Vite comme outil de développement rapide. Avec Docker Compose, vous pouvez facilement lancer l'application dans un environnement Dockerisé.</p>
+<h2 id="prerequis">Prérequis</h2>
+<p>Assurez-vous d'avoir installé les outils suivants sur votre machine avant de commencer :
+- <a href="https://nodejs.org/">Node.js</a> (version recommandée : 14.x)
+- <a href="https://www.docker.com/">Docker</a>
+- <a href="https://docs.docker.com/compose/">Docker Compose</a></p>
+<h2 id="installation">Installation</h2>
+<ol>
+<li>
+<p>Clonez ce dépôt sur votre machine locale :
+    <code>bash
+    git clone &lt;url-du-dépôt&gt; mon-application-vue3</code></p>
+</li>
+<li>
+<p>Accédez au répertoire de l'application :
+    <code>bash
+    cd mon-application-vue3</code></p>
+</li>
+<li>
+<p>Installez les dépendances Node.js :
+    <code>bash
+    npm install</code></p>
+</li>
+</ol>
+<h2 id="lancement-de-lapplication-en-mode-developpement">Lancement de l'application en mode développement</h2>
+<p>Pour lancer l'application en mode développement avec Vite, exécutez la commande suivante :</p>
+<pre><code class="language-bash">npm run dev
+</code></pre>
+<p>Cela démarrera un serveur de développement local et ouvrira automatiquement votre navigateur par défaut avec l'application chargée.</p>
+<h2 id="docker-compose">Docker Compose</h2>
+<p>Vous pouvez également lancer l'application dans un conteneur Docker en utilisant Docker Compose.
+1. Assurez-vous que Docker est en cours d'exécution sur votre machine.
+2. Utilisez Docker Compose pour construire et démarrer les conteneurs :
+    <code>bash
+    docker-compose up --build</code>
+Cela va construire l'image Docker et démarrer le conteneur, rendant l'application accessible à l'adresse <code>http://localhost:3000</code> dans votre navigateur.</p>
+<p>Oublié pas de lancé tous les autres services nécessaire pour le bon fonctionnement de l'application.</p>
+<h2 id="recommended-setup">Recommended Setup</h2>
+<ul>
+<li>
+<p><a href="https://code.visualstudio.com/">VS Code</a> + <a href="https://marketplace.visualstudio.com/items?itemName=Vue.volar">Vue - Official</a> (previously Volar) and disable Vetur</p>
+</li>
+<li>
+<p>Use <a href="https://github.com/vuejs/language-tools/tree/master/packages/tsc">vue-tsc</a> for performing the same type checking from the command line, or for generating d.ts files for SFCs.</p>
+</li>
+</ul>
+
+
+</section>
+
+</div> <!-- end of page-inner -->
+</div> <!-- end of page-wrapper -->
+
+</div> <!-- end of body-inner -->
+
+</div> <!-- end of book-body -->
+<script src="../js/main.js"></script>
+<script src="../js/gitbook.min.js"></script>
+<script src="../js/theme.min.js"></script>
+</body>
+</html>
