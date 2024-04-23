@@ -1,17 +1,32 @@
-# Welcome to MkDocs
+# Welcome to Docathon 🎉
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+Lien github de l'organisation: [Hackathon]("https://github.com/Hackathon-M1-AL")
 
-## Commands
+## Installation du projet
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+### Prérequis
 
-## Project layout
+-   [Node.js](https://nodejs.org/en/)
+-   [Npm](https://www.npmjs.com/)
+-   [Git](https://git-scm.com/)
+-   [Docker](https://www.docker.com/)
+-   [Docker-compose](https://docs.docker.com/compose/)
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+### Installation
+
+Installer du frontend:
+
+```bash
+git clone https://github.com/Hackathon-M1-AL/Frontend
+cd Frontend
+npm install
+npm run preview
+```
+
+Dans un autre terminal, installer du backend:
+
+```bash
+git clone https://github.com/Hackathon-M1-AL/DevOps
+cd DevOps
+docker-compose up
+```

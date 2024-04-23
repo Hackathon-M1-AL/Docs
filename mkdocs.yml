@@ -1,7 +1,9 @@
 site_name: Docathon
 nav:
-    - "DevOps": "devops.md"
+    - "Frontend": "frontend.md"
+    - "API CRUD": "api_crud.md"
     - "Authentification": "authentification.md"
+    - "DevOps": "devops.md"
 theme:
     name: gitbook
 plugins:
