@@ -1,5 +1,8 @@
 site_name: Docathon
 nav:
-    - 'DevOps': 'devops.md'
+    - "DevOps": "devops.md"
+    - "Authentification": "authentification.md"
 theme:
     name: gitbook
+plugins:
+    - external-markdown
