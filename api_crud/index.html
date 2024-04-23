@@ -72,7 +72,140 @@ Theme by GitBook
 
 
 <h1 id="api-crud">Api-CRUD</h1>
-<h1 id="api-crud_1">Api-CRUD</h1>
+<h2 id="docker-compose">Docker compose</h2>
+<p>Deux docker-compose sont fournis pour lancer l'application en local.</p>
+<h3 id="docker-composeyml">docker-compose.yml</h3>
+<p>Le premier docker-compose permet de lancer l'application en local base de données Mysql et l'application Spring Boot.</p>
+<p>Pour lancer l'application, il suffit de lancer la commande suivante :</p>
+<pre><code class="language-bash">docker-compose -f docker-compose.yml up
+</code></pre>
+<h3 id="docker-compose-devyml">docker-compose-dev.yml</h3>
+<p>Le deuxième docker-compose permet de lancer juste la base de données Mysql en local.</p>
+<p>Pour lancer la base de données, il suffit de lancer la commande suivante :</p>
+<pre><code class="language-bash">docker-compose -f docker-compose-dev.yml up
+</code></pre>
+<h2 id="les-routes-disponibles-de-lapi">Les routes disponibles de l'API</h2>
+<h3 id="utilisateurs">Utilisateurs</h3>
+<p><strong>Ajouter</strong> un nouvel utilisateur :</p>
+<pre><code>[POST] /nouveau-utilisateur
+</code></pre>
+<p>Exemple de json :</p>
+<pre><code class="language-json">{
+
+}
+</code></pre>
+<p>Ajoute un nouvel utilisateur à la base de données.</p>
+<p><strong>Modifier</strong> un utilisateur</p>
+<pre><code>[PUT] /modifie-utilisateur
+</code></pre>
+<p>Exemple de json :</p>
+<pre><code class="language-json">{
+
+}
+</code></pre>
+<p>Met à jour les informations d'un utilisateur existant</p>
+<p><strong>Récupérer</strong> un utilisateur par son <strong>id</strong></p>
+<pre><code>[GET] /get-utilisateur-by-id/{id}
+</code></pre>
+<p>Récupère un seul utilisateur par son ID.</p>
+<p><strong>Récupérer</strong> tous les utilisateurs</p>
+<pre><code>[GET] /get-all-utilisateurs
+</code></pre>
+<p>Récupère la liste de tous les utilisateurs disponibles.</p>
+<p><strong>Supprimer</strong> un utilisateur</p>
+<pre><code>[DELETE] /supprimer-utilisateur/{id}
+</code></pre>
+<p>Supprime un utilisateur de la base de données.</p>
+<h3 id="catalogues">Catalogues</h3>
+<p><strong>Ajouter</strong> un nouveau catalogue :</p>
+<pre><code>[POST] /nouveau-catalogue
+</code></pre>
+<p>Exemple de json :</p>
+<pre><code class="language-json">{
+  &quot;nom&quot;: &quot;string&quot;,
+  &quot;produits&quot;: [
+    {
+        &quot;id&quot;: 1,
+        &quot;nom&quot;: &quot;ProduitA&quot;,
+        &quot;description&quot;: &quot;Premier produit&quot;,
+        &quot;quantite&quot;: 5,
+        &quot;prix&quot;: 15
+    }
+  ]
+}
+</code></pre>
+<p>Ajoute un nouveau catalogue à la base de données.</p>
+<p><strong>Modifier</strong> un catalogue</p>
+<pre><code>[PUT] /modifie-catalogue
+</code></pre>
+<p>Exemple de json :</p>
+<pre><code class="language-json">{
+  &quot;id&quot;: 0,
+  &quot;nom&quot;: &quot;string&quot;,
+  &quot;produits&quot;: [
+    {
+        &quot;id&quot;: 1,
+        &quot;nom&quot;: &quot;ProduitA&quot;,
+        &quot;description&quot;: &quot;Premier produit&quot;,
+        &quot;quantite&quot;: 5,
+        &quot;prix&quot;: 15
+    }
+  ]
+}
+</code></pre>
+<p>Met à jour les informations d'un catalogue existant</p>
+<p><strong>Récupérer</strong> un catalogue par son <strong>id</strong></p>
+<pre><code>[GET] /get-catalogue-by-id/{id}
+</code></pre>
+<p>Récupère un seul catalogue par son ID.</p>
+<p><strong>Récupérer</strong> tous les catalogues</p>
+<pre><code>[GET] /get-all-catalogues
+</code></pre>
+<p>Récupère la liste de tous les catalogues disponibles.</p>
+<p><strong>Supprimer</strong> un catalogue</p>
+<pre><code>[DELETE] /supprimer-catalogue/{id}
+</code></pre>
+<p>Supprime un catalogue de la base de données.</p>
+<h3 id="produits">Produits</h3>
+<p><strong>Ajouter</strong> un nouveau produit :</p>
+<pre><code>[POST] /nouveau-produit
+</code></pre>
+<p>Exemple de json :</p>
+<pre><code class="language-json">{
+  &quot;nom&quot;: &quot;ProduitA&quot;,
+  &quot;description&quot;: &quot;Premier produit&quot;,
+  &quot;quantite&quot;: 5,
+  &quot;prix&quot;: 10
+}
+</code></pre>
+<p>Ajoute un nouveau produit à la base de données.</p>
+<p><strong>Modifier</strong> un produit</p>
+<pre><code>[PUT] /modifie-produit
+</code></pre>
+<p>Exemple de json : </p>
+<pre><code class="language-json">{
+  &quot;id&quot;: 1,
+  &quot;nom&quot;: &quot;ProduitA&quot;,
+  &quot;description&quot;: &quot;Premier produit&quot;,
+  &quot;quantite&quot;: 5,
+  &quot;prix&quot;: 15
+}
+</code></pre>
+<p>Met à jour les informations d'un produit existant</p>
+<p><strong>Récupérer</strong> un produit par son <strong>id</strong></p>
+<pre><code>[GET] /get-produit-by-id/{id}
+</code></pre>
+<p>Récupère un seul produit par son ID.</p>
+<p><strong>Récupérer</strong> tous les produits</p>
+<pre><code>[GET] /get-all-produits
+</code></pre>
+<p>Récupère la liste de tous les produits disponibles.</p>
+<p><strong>Supprimer</strong> un produit</p>
+<pre><code>[DELETE] /supprimer-produit/{id}
+</code></pre>
+<p>Supprime un produit de la base de données.</p>
+<h2 id="diagramme-des-classes">Diagramme des classes</h2>
+<p><img alt="Diagramme des classes" src="https://github.com/Hackathon-M1-AL/Api-CRUD/blob/main/class_diagram.jpg" /></p>
 
 
 </section>
